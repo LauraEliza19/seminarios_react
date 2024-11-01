@@ -1,20 +1,42 @@
+// src/App.js
+import React, { useState } from 'react';
 import './App.css';
-import Componente from './componente';
-import Componente2 from './componente2';
+import PokemonList from './components/PokemonList';
 
-function App() {
-  const nomeCompleto = "Laura Palagano"
-  const hb1 = "nadar"
-  const hb2 = "tocar violão"
-  const hb3 = "jogar futebol"
+const App = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const pokemons = [
+    { name: 'Pikachu', image: 'https://img.pokemondb.net/sprites/home/normal/pikachu.png' },
+    { name: 'Charmander', image: 'https://img.pokemondb.net/sprites/home/normal/charmander.png' },
+    { name: 'Bulbasaur', image: 'https://img.pokemondb.net/sprites/home/normal/bulbasaur.png' },
+    // Adicione mais Pokémons conforme necessário
+  ];
+
+  const handlePokemonClick = (name) => {
+    alert(`Você clicou em ${name}!`);
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredPokemons = pokemons.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div class="bg-dark p-5 fs-3 vh-100">
-      <Componente nomeCompleto={nomeCompleto} />
-      <Componente2 hb1={hb1} hb2={hb2} hb3={hb3}/>
+    <div className="App">
+      <input
+        type="text"
+        placeholder="Pesquisar Pokémon"
+        value={searchTerm}
+        onChange={handleSearchChange}
+      />
+      <h1 class='text-white'>Lista de Pokémons</h1>
+      <PokemonList pokemons={filteredPokemons} onPokemonClick={handlePokemonClick} />
     </div>
-    
   );
-}
+};
 
 export default App;
