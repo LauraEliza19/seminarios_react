@@ -1,0 +1,57 @@
+.type-poison {
+    color: purple;
+  }
+  
+  .type-grass {
+    color: green;
+  }
+  
+  .type-electric {
+    color: yellow;
+  }
+  .pokemon-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .pokemon-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .types {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .type-grass {
+    background-color: #78c850;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin: 2px;
+  }
+  
+  .type-poison {
+    background-color: #a040a0;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin: 2px;
+  }
+  
+  .type-electric {
+    background-color: #f8d030;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    margin: 2px;
+  }
+  
+  /* Adicione mais estilos para outros tipos de Pokémon conforme necessário */
+  
