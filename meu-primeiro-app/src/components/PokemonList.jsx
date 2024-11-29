@@ -1,72 +1,80 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import PokemonCard from "./PokemonCard";
 
 function PokemonList() {
-  const [pokemons, setPokemons] = useState([]);
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
-  const [pokemonName, setPokemonName] = useState('');
+  const [pokemonList, setPokemonList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
-  const handleCardClick = (pokemon) => {
-    setSelectedPokemon(pokemon);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPokemonList = pokemonList.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(pokemonList.length / itemsPerPage);
+
+ // Busca todos os detalhes dos Pokémon
+ useEffect(() => {
+  const fetchPokemonList = async () => {
+    try {
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+      const data = await response.json();
+
+      // Busca detalhes de cada Pokémon em paralelo
+      const detailedPokemonPromises = data.results.map(async (pokemon) => {
+        const res = await fetch(pokemon.url);
+        const details = await res.json();
+        return {
+          name: pokemon.name,
+          image: details.sprites.front_default,
+          type: details.types.map((t) => t.type.name).join("/"),
+          weight: details.weight, // Adiciona peso
+          abilities: details.abilities.map((a) => a.ability.name).join(", "), // Adiciona habilidades
+        };
+      });
+
+      const detailedPokemonList = await Promise.all(detailedPokemonPromises);
+      setPokemonList(detailedPokemonList);
+    } catch (error) {
+      console.error("Erro ao buscar os dados", error);
+    }
   };
 
-  const handlePokemonNameInput = (event) => {
-    setPokemonName(event.target.value);
-  };
-
-  useEffect(() => {
-    const fetchPokemons = async () => {
-      try {
-        const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');
-        const pokemonData = await Promise.all(
-          response.data.results.map(async (pokemon) => {
-            const pokemonDetails = await axios.get(pokemon.url);
-            return {
-              name: pokemonDetails.data.name,
-              image: pokemonDetails.data.sprites.front_default,
-              type: pokemonDetails.data.types[0].type.name,
-            };
-          })
-        );
-        setPokemons(pokemonData);
-      } catch (error) {
-        console.error("Error fetching Pokémon data:", error);
-      }
-    };
-
-    fetchPokemons();
-  }, []);
+  fetchPokemonList();
+}, []);
 
   return (
-    <div>
-      <input type="text" onChange={handlePokemonNameInput} placeholder="Search for a Pokémon" />
-      {selectedPokemon ? (
-        <div>
-          <h2>Detalhes do Pokémon</h2>
-          <PokemonCard
-            name={selectedPokemon.name}
-            image={selectedPokemon.image}
-            type={selectedPokemon.type}
-          />
-          <button onClick={() => setSelectedPokemon(null)}>Voltar</button>
-        </div>
-      ) : (
-        <div className="pokemon-list">
-          {pokemons.map((pokemon) => (
+    <div className="container">
+      <div className="pokemon-list row">
+        {currentPokemonList.map((pokemon, index) => (
+          <div key={index} className="col-md-4">
             <PokemonCard
-              key={pokemon.name}
               name={pokemon.name}
               image={pokemon.image}
               type={pokemon.type}
-              onClick={() => handleCardClick(pokemon)}
+              weight={pokemon.weight}
+              abilities={pokemon.abilities}
             />
-          ))}
-        </div>
-      )}
+          </div>
+        ))}
+      </div>
+      <div className="pagination d-flex justify-content-between mt-4">
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="btn btn-secondary"
+        >
+          Anterior
+        </button>
+        <span>Página {currentPage}</span>
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          className="btn btn-secondary"
+          disabled={currentPage === totalPages}
+        >
+          Próxima
+        </button>
+      </div>
     </div>
   );
-  
 }
 
 export default PokemonList;

@@ -1,57 +1,175 @@
+.pokemon-card {
+  background-color: #2d2d2d; /* Fundo escuro */
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding:50px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.image-container {
+  background-color: #ffffff; /* Fundo branco na imagem */
+  padding: 10px;
+  border-radius: 30px;
+}
+
+.card-img-top {
+  max-width: 100%;
+  height: auto;
+}
+
+.type-fire {
+  background-color: #f03030;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
 .type-poison {
-    color: purple;
-  }
-  
-  .type-grass {
-    color: green;
-  }
-  
-  .type-electric {
-    color: yellow;
-  }
-  .pokemon-card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  
-  .pokemon-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .types {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .type-grass {
-    background-color: #78c850;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin: 2px;
-  }
-  
-  .type-poison {
-    background-color: #a040a0;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin: 2px;
-  }
-  
-  .type-electric {
-    background-color: #f8d030;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    margin: 2px;
-  }
-  
-  /* Adicione mais estilos para outros tipos de Pokémon conforme necessário */
-  
+  background-color: #741180;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-flying {
+  background-color: #d5a582;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-bug {
+  background-color: #c7594d;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-normal {
+  background-color: #a1d56c;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-water {
+  background-color: #6890f0;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-grass {
+  background-color: #78c850;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-electric {
+  background-color: #ece55f;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-ground {
+  background-color: #533d1c;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-fairy {
+  background-color: #962d54;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-fighting {
+  background-color: #e4620c;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-psychic {
+  background-color: #b45fec;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-rock {
+  background-color: #4b4a46;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-steel {
+  background-color: #14808e;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-ice {
+  background-color: #7cb9d5;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-ghost {
+  background-color: #7c578c;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+
+.type-dragon {
+  background-color: #066518;
+  color: rgba(255, 255, 255, 0.798);
+  padding: 5px;
+  border-radius: 5px;
+  margin:1px;
+}
+/* Botão personalizado */
+.btn-primary {
+  background-color: #0759b1;
+  border-color: #0056b3;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 10px 15px;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #003d80;
+}
+
+
